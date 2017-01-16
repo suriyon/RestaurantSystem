@@ -3,5 +3,5 @@
 <a href="EmployeeServlet?action=selectall">หน้าหลัก</a> |
 <a href="#">ค้นหา</a> |
 <a href="insert.jsp">เพิ่มข้อมูล</a> |
-<a href="#">แก้ไขข้อมูล</a> |
+<a href="update.jsp">แก้ไขข้อมูล</a> |
 <a href="#">ลบข้อมูล</a> |

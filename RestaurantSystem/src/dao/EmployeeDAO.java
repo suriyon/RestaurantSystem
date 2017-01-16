@@ -145,6 +145,28 @@ public class EmployeeDAO {
 		}
 		return result;		
 	}
+	public Employee selectById(String id) {
+		Employee employee = new Employee();
+		String sql = "select * from employee where id = ?";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				employee.setId(rs.getString(1));
+				employee.setName(rs.getString(2));
+				employee.setPosition(rs.getInt(3));
+				employee.setSalary(rs.getInt(4));
+			}
+			rs.close();
+			ps.close();
+			MySQLHelper.closeDB();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return employee;
+	}
 }
 
 

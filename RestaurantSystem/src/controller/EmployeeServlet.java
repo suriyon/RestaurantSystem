@@ -84,6 +84,14 @@ public class EmployeeServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			request.setAttribute("employees", employees);
 			rd.forward(request, response);
+		}else if(action.equals("searchbyid")){
+			String id = request.getParameter("idsearch");
+			EmployeeDAO dao = new EmployeeDAO();
+			Employee employee = dao.selectById(id);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("update.jsp");
+			request.setAttribute("employee", employee);
+			rd.forward(request, response);
 		}
 	}
 
