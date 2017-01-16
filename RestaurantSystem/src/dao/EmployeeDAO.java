@@ -122,6 +122,29 @@ public class EmployeeDAO {
 		}
 		return employees;
 	}
+	
+	public boolean invalidId(String id){
+		boolean result = false;
+		String sql = "select count(id) from employee where id = ?";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				int count = rs.getInt(1);
+				if(count > 0)
+					result = true;
+			}
+			rs.close();
+			ps.close();
+			MySQLHelper.closeDB();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;		
+	}
 }
 
 
